@@ -15,6 +15,8 @@ var usersRouter = require('./routes/users');
 var moleculeRouter = require('./routes/molecule');
 var catalogRouter = require('./routes/catalog');
 var itemRouter = require('./routes/item');
+var viewerRouter = require('./routes/viewer');
+
 //var adminRouter = require('./routes/admin');
 
 
@@ -46,6 +48,8 @@ app.use('/users', usersRouter);
 app.use('/molecule', moleculeRouter);
 app.use('/catalog', catalogRouter);
 app.use('/item', itemRouter);
+app.use('/viewer', viewerRouter);
+
 //app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
