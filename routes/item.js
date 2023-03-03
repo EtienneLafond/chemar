@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs'); 
 
-let data = JSON.parse(fs.readFileSync('./public/catalog/catalog.json', "utf8"));
 
 
 /* GET home page. */
@@ -12,6 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req , res){
   var molfiles = fs.readdirSync('./public/molfiles/')
+  let data = JSON.parse(fs.readFileSync('./public/catalog/catalog.json', "utf8"));
 
   for(let i = 0; i < molfiles.length; i++){
     molfiles[i] = molfiles[i].replace('.mol', '');
