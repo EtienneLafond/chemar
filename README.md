@@ -5,7 +5,7 @@ https://git.cs.dal.ca/belcher/chemar-winter-2023
 - [ChemAR-Winter-2023](#chemar-winter-2023)
   - [Molecular AR Viewer Application](#molecular-ar-viewer-application)
     - [Description](#description)
-    - [Prerequisites](#prerequisites)
+    - [Minimum Requirements](#minimum-requirements)
     - [Installation](#installation)
   - [Running the Server](#running-the-server)
   - [Technical Inventory](#technical-inventory)
@@ -56,11 +56,13 @@ https://git.cs.dal.ca/belcher/chemar-winter-2023
 
 This is a web application that allows users to view 3D models of molecules in Augmented Reality. The application uses the AR.js library to detect markers and display 3D models in the browser. The models are generated from a mol file and are intended to look like classic "ball and stick" models.
 
-### Prerequisites
+### Minimum Requirements
 
-Before running the program, make sure you have Node.js installed:
+Before running the program, make sure you have [Node.js](https://nodejs.org/en/) installed on your computer. You can check if you have Node.js installed by running the following command in your terminal:
 
-- [Node.js](https://nodejs.org/en/) 
+```bash
+node -v
+```
 
 ### Installation
 
@@ -85,6 +87,8 @@ npm start
 ```
 
 The server will start listening on port 4000. You can now access the server by visiting https://localhost:4000 in your browser.
+
+
 
 ## Technical Inventory
 ### Back End
@@ -1396,14 +1400,6 @@ mesh1.position.y = 0.5;
 markerRoot1.add( mesh1 );
 ```
 
-We would instead see a sphere attached to the marker, which is made up of 32 segments in the horizontal direction, and 16 segments in the vertical direction, and has a radius of 1. Read up on the Three.js documentation for more information on how to create 3D objects here: https://threejs.org/docs/index.html#api/en/core/BufferGeometry
-
-Three.js includes a lot of different types of geometries, and materials. For the purposes of representing molecules, [spheres](https://threejs.org/docs/index.html#api/en/geometries/SphereGeometry) and [cylinders](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) are what are needed for creating ball and stick style models.
-
-
-
-
-
 # Deployment
 
 ## Local Deployments
@@ -1414,7 +1410,7 @@ When deploying to a cloud service like Azure Websites, HTTPS is enabled by defau
 
 ## Remote Deployment
 ### Deploying to Azure Websites:
-To deploy to Azure Websites, you will need to create an Azure account. Once you have done this, you can create a new web application. You can do this from the Azure Portal, or from the integrated tools in your IDE. Once you have created the web application, you can deploy the application to it. You can do this from the integrated tools in your IDE, or from the command line. If you want to see a helpful guide on how to do this specifically with express.js, [take a look at this article](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs)
+To deploy to Azure Websites, you will need to create an Azure account. Once you have done this, you can create a new web application. You can do this from the Azure Portal, or from the integrated tools in your IDE. Once you have created the web application, you can deploy the application to it. You can do this from the integrated tools in your IDE, or from the command line. If you want to see a helpful guide on how to do this specifically with express.js, [take a look at this article.](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs)
 
 For instructions on using the integrated tools in your IDE, [take a look at this blog post](https://davidgiard.com/deploying-a-web-app-to-azure-from-visual-studio-code)
 
