@@ -4,6 +4,9 @@
     <title>Molecule Viewer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
     <script type="importmap">
         {
             "imports": {
@@ -30,24 +33,43 @@
             opacity: 0;
             cursor: pointer;
         }
+        #three-area{
+            height: 50vh;
+            width: 100%;
+        }
+        #gui-area{
+            z-index: 1000 !important;
+        }
+
+        #body-container{
+            position: relative;
+        }
     </style> 
 </head>
 <body>
+    <div id = "body-container">
+        <div id ="three-area"></div>
+        <div id="gui-area">
+            popo
+
+        </div>
+    </div>
+
     <input id="fileInput" type="file"  accept=".mol" />
 
     <script type= "module">
         import {OrbitControls} from '/js/OrbitControls.js';
-        import { VRButton } from '/js/VRButton.js';
         import { ARButton } from '/js/ARButton.js';
 
 
         import * as THREE from '/js/three.module.js';
         
-
         const clock = new THREE.Clock();
         let deltaTime = 0;
         let totalTime = 0;
         let centerOffset = -10;
+
+        const threeArea = document.getElementById('three-area');
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -55,7 +77,7 @@
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setClearColor( 0x000000, 0 );
         renderer.setSize( window.innerWidth, window.innerHeight );
-        document.body.appendChild( renderer.domElement );
+        threeArea.appendChild( renderer.domElement );
 
         const activateAR = document.body.appendChild( ARButton.createButton( renderer ) );
         renderer.xr.enabled = true;
@@ -335,8 +357,9 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
-
-
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body>
 </html>
