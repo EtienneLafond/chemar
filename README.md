@@ -7,7 +7,7 @@ https://git.cs.dal.ca/belcher/chemar-winter-2023
     - [Description](#description)
     - [Minimum Requirements](#minimum-requirements)
     - [Installation](#installation)
-  - [Running the Server](#running-the-server)
+  - [Running the application](#running-the-application)
   - [Technical Inventory](#technical-inventory)
     - [Client-side Technologies:](#client-side-technologies)
   - [Server-side Technologies:](#server-side-technologies)
@@ -30,7 +30,7 @@ https://git.cs.dal.ca/belcher/chemar-winter-2023
     - [Create an init() function](#create-an-init-function)
     - [Load a mol file](#load-a-mol-file)
     - [Parsing a mol file](#parsing-a-mol-file)
-    - [Step 5: import the conversion function into the project](#step-5-import-the-conversion-function-into-the-project)
+    - [Adding the `.mol` file converter](#adding-the-mol-file-converter)
     - [Clear the scene when the init function is called](#clear-the-scene-when-the-init-function-is-called)
     - [Style the spheres](#style-the-spheres)
     - [Adding lights](#adding-lights)
@@ -81,7 +81,7 @@ Install the dependencies:
 npm install
 ```
 
-## Running the Server
+## Running the application
 
 To start the server, run the following command:
 
@@ -89,7 +89,7 @@ To start the server, run the following command:
 npm start
 ```
 
-The server will start listening on port 4000. You can now access the server by visiting https://localhost:4000 in your browser.
+The server will start listening on port 4000. You can now access the web application by visiting https://localhost:4000 in your browser.
 
 
 
@@ -922,7 +922,7 @@ const molFileToJSON = (molFile) => {
 }
 ```
 
-### Step 5: import the conversion function into the project
+### Adding the `.mol` file converter
 
 We can make a new file and call it `molFileToJSON.js`. We can then import the function into the project by adding the following line to the top of `index.js`:
 
@@ -934,9 +934,8 @@ We can make a new file and call it `molFileToJSON.js`. We can then import the fu
     <script src="js/three.min.js"></script>
     <script src="js/molFileToJSON.js"></script>
 
-    <style>
-        body { margin: 0; }
-    </style> 
+    ...
+
 </head>
 ```
 
@@ -1403,7 +1402,7 @@ mesh1.position.y = 0.5;
 markerRoot1.add( mesh1 );
 ```
 
-This is normal Three.js code. We create a cube geometry, and a material. We then create a mesh, and add it to the markerRoot. The markerRoot is the object which is attached to the marker. This means that the cube will be attached to the marker. If we instead wanted to add a sphere, we could change the geometry1 properties like this:
+We create a cube geometry, and a material. We then create a mesh, and add it to the markerRoot. The markerRoot is the object which is attached to the marker. This means that the cube will be attached to the marker. If we instead wanted to add a sphere, we could change the geometry1 properties like this:
 ```js
 let geometry1 = new THREE.SphereGeometry(1,32,16);
 let material1 = new THREE.MeshNormalMaterial({
@@ -1417,6 +1416,7 @@ mesh1.position.y = 0.5;
 
 markerRoot1.add( mesh1 );
 ```
+Thus, we can modify this code to add our own 3D objects to the scene, and attach them to the marker. Using the molecule viewer as a basis, we can add a molecule to the scene, and attach it to the marker. We can then use the camera of the device to view the molecule in AR, with the marker as a reference point.
 
 # Deployment
 
