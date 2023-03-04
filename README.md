@@ -441,8 +441,7 @@ The contents of the public folder for a project with Threex and AR.js might look
     └── threex
 ```
 
-Explanation:
-The `catalog` directory included a .JSON file which has information about the particulars of the molecules. The `cjson` folder includes a script called `converter.js` which converts molfiles to JSON objects. We then have a folder called `data` which included some sample patterns and molecules. The `datgui` folder includes a script called `dat.gui.js` which is used to create a GUI for the application. The `img` folder includes some images which are used in the application. The `js` folder includes the main script for the application. The `jsartoolkit5` folder includes the AR.js library. The `molfiles` folder includes some sample molecules as .mol files . The `threex` folder includes scripts which handle DOM events.
+The `catalog` directory includes a .JSON file which has information about the particulars of the molecules. The `cjson` folder includes a script called `converter.js` which converts molfiles to JSON objects. We then have a folder called `data` which included some sample patterns and molecules. The `datgui` folder includes a script called `dat.gui.js` which is used to create a GUI for the application. The `img` folder includes some images which are used in the application. The `js` folder includes the main script for the application. The `jsartoolkit5` folder includes the AR.js library. The `molfiles` folder includes some sample molecules as .mol files . The `threex` folder includes scripts which handle DOM events.
 
 You can see that how these files are accessed in the `molecule.ejs` file:
 
