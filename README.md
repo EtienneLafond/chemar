@@ -9,6 +9,9 @@ https://git.cs.dal.ca/belcher/chemar-winter-2023
     - [Installation](#installation)
   - [Running the Server](#running-the-server)
   - [Technical Inventory](#technical-inventory)
+    - [Client-side Technologies:](#client-side-technologies)
+  - [Server-side Technologies:](#server-side-technologies)
+  - [Database Technologies:](#database-technologies)
     - [Back End](#back-end)
       - [Node.js](#nodejs)
       - [Express.js](#expressjs)
@@ -91,6 +94,22 @@ The server will start listening on port 4000. You can now access the server by v
 
 
 ## Technical Inventory
+### Client-side Technologies:
+* **Bootstrap**: A CSS and JS framework and UI toolkit for styling web applications
+* **jQuery**: A JavaScript library for manipulating the DOM
+* **jQuery Datatables**: A jQuery plugin for displaying, filtering, paginating and searching tabular data
+* **Three.js**: A JavaScript library for creating 3D graphics in a web browser
+* **WebXR**: A JavaScript API for accessing augmented reality and virtual reality devices, like cameras and motion sensors
+
+## Server-side Technologies:
+* **Node.js**: A JavaScript runtime engine
+* **Express**: A web application framework for Node.js
+* **EJS**: A templating engine for Node.js
+
+## Database Technologies:
+* **Supabase**: A Firebase alternative that provides a Postgres database, authentication, and storage.
+
+
 ### Back End
 #### Node.js
 Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser.
