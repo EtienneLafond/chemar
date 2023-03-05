@@ -40,7 +40,11 @@
             position: absolute;
             top: 0;
             left: 0;
+            max-width: 500px;
             z-index: 1000 !important;
+        }
+        .gui-width{
+            max-width: 500px;
         }
 
         #body-container{
@@ -51,167 +55,38 @@
             background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
         }
+        .transparent-blur{
+            background-color: rgba(31, 35, 38, 0.1);
+        }
+        .blur-10{
+            backdrop-filter: blur(10px);
+        }
     </style> 
 </head>
 <body class = "bg-dark">
     <div id = "body-container">
         <div id ="three-area"></div>
         <div id="gui-area">
-            <div class = "container-fluid ">
-                <div class = "row mt-3">
-                    <div class = "col-2">
-                            <button type="button" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#mainMenu" aria-controls="mainMenu">
+            <div class="gui-width">
+                <div class = "container">
+                    <div class = "row">
+                        <div class = "col-12 mt-2">
+                            <button type="button" class="btn btn-outline-light" data-bs-toggle="collapse" href="#mainMenu" role="button" aria-expanded="false" aria-controls="mainMenu">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-menu-app-fill" viewBox="0 0 16 16">
                                     <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h2A1.5 1.5 0 0 1 5 1.5v2A1.5 1.5 0 0 1 3.5 5h-2A1.5 1.5 0 0 1 0 3.5v-2zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                                  </svg>
-                            </button>
-
-                        
+                                </svg>
+                            </button>   
+                        </div>
                     </div>
-                </div>
-                
-            <div class="offcanvas offcanvas-start text-white" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="mainMenu" aria-labelledby="mainMenu">
-                <div class="offcanvas-header">
-                <button type="button" class="btn btn-light" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-menu-app" viewBox="0 0 16 16">
-                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h2A1.5 1.5 0 0 1 5 1.5v2A1.5 1.5 0 0 1 3.5 5h-2A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                      </svg>
-                </button>
+                    <div class="row">
+                        <div class="col-12">
+                          <div class="collapse multi-collapse" id="mainMenu">
 
-                <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel">
-                    MoleculAR
-                </h5>
-                </div>
-                <div class="offcanvas-body">
-
-                    <h4 class ="fw-bold ">Molecule</h4>
-                    <h5 class = "mt-2">Source</h5>
-                    <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="molecule" id="loadRadio" autocomplete="off">
-                    <label class="btn btn-outline-light" for="loadRadio">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
-                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"></path>
-                          </svg>
-                          <br/>
-                        Load MOL File
-                    </label>
-                    <input type="radio" class="btn-check btn-large" name="molecule" id="searchButton" autocomplete="off" checked>
-                    <label class="btn btn-outline-light" for="searchButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                          </svg>
-                            <br/>
-                        Search Database
-                    </label>
-                    </div>
-
-                    <div class="input-group flex-nowrap mt-2">
-                        <span class="input-group-text" id="addon-wrapping">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                              </svg>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Molecule CID" aria-label="Username" aria-describedby="addon-wrapping">
-                        <button class="btn btn-light" type="button" id="button-addon2">Search</button>
+                          </div>
+                        </div>
                       </div>
-
-                    <div class="input-group flex-nowrap mt-2">
-                        <span class="input-group-text" id="addon-wrapping">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                              </svg>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Molecule Name" aria-label="Username" aria-describedby="addon-wrapping">
-                        <button class="btn btn-light" type="button" id="button-addon2">Search</button>
-                      </div>
-
-
-                    <h4 class = "mt-4 fw-bold">Options</h4>
-
-                    <h5 class = "mt-2">Transformation</h5>
-                    <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-light" for="btnradio1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z"></path>
-                              </svg>
-                            Position
-                        </label>
-                    
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-light" for="btnradio2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path>
-                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path>
-                              </svg>    
-                            Rotation
-                        </label>
-                    
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-light" for="btnradio3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"></path>
-                              </svg>
-                            Scale
-                        </label>
-                    </div>
-
-                    <div class = "row mt-3">
-                        <div class = "col-1">
-                            X
-                        </div>
-                        <div class = "col-11">
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" id="X">
-                        </div>
-                    </div>
-
-                    <div class = "row">
-                        <div class = "col-1">
-                            Y
-                        </div>
-                        <div class = "col-11">
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" id="X">
-                        </div>
-                    </div>
-
-                    <div class = "row">
-                        <div class = "col-1">
-                            Z
-                        </div>
-                        <div class = "col-11">
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" id="X">
-                        </div>
-                    </div>
-
-                    <h4 class = "mt-4 fw-bold">Appearance</h4>
-                    <h5 class = "mt-2">Presets</h5>
-
-                    <h5 class = "mt-2">Customize</h5>
-                    <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="atomAppearanceButton" autocomplete="off" >
-                        <label class="btn btn-outline-light" for="atomAppearanceButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 24 24">
-                                <path d="M16 7c0 2.21-1.79 4-4 4S8 9.21 8 7s1.79-4 4-4 4 1.79 4 4zm-9 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm10 0c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path>
-                            </svg>
-                            Atoms
-                        </label>
-                    
-                        <input type="radio" class="btn-check" name="btnradio" id="bondAppearanceButton" autocomplete="off">
-                        <label class="btn btn-outline-light" for="bondAppearanceButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 24 24">
-                            <path d="M8.4 18.2c.38.5.6 1.12.6 1.8 0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3c.44 0 .85.09 1.23.26l1.41-1.77c-.92-1.03-1.29-2.39-1.09-3.69l-2.03-.68c-.54.83-1.46 1.38-2.52 1.38-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3c0 .07 0 .14-.01.21l2.03.68c.64-1.21 1.82-2.09 3.22-2.32V5.91C9.96 5.57 9 4.4 9 3c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.4-.96 2.57-2.25 2.91v2.16c1.4.23 2.58 1.11 3.22 2.32L18 9.71V9.5c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3c-1.06 0-1.98-.55-2.52-1.37l-2.03.68c.2 1.29-.16 2.65-1.09 3.69l1.41 1.77c.38-.18.79-.27 1.23-.27 1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3c0-.68.22-1.3.6-1.8l-1.41-1.77c-1.35.75-3.01.76-4.37 0L8.4 18.2z"></path>
-                            </svg>
-                            Bonds
-                        </label>
-                    </div>
-                    
-                <h2 class = "fw-bold">About</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quod facere inventore doloremque tempore, ab reprehenderit illum nulla autem aperiam repellendus laborum ut consectetur harum quidem saepe sapiente ea officiis!
-                </p>
-    
                 </div>
+
             </div>
         </div>
     </div>
