@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs'); 
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/catalog');
@@ -17,12 +15,8 @@ router.get('/:id', function(req , res){
     molfiles[i] = molfiles[i].replace('.mol', '');
   }
   if(molfiles.includes(req.params.id)){
-    if(!data[req.params.id].hasOwnProperty('name')){
-      data[req.params.id].name = 'No name in catalog';
-      data[req.params.id].formula = 'No formula in catalog';
-    }
-    var molfile = fs.readFileSync('./public/molfiles/'+req.params.id+'.mol', 'utf8');
-    res.render('item', {
+    molfile = fs.readFileSync('./public/molfiles/'+req.params.id+'.mol', 'utf8');
+    res.render('viewer', {
       title: 'Molecule Viewer: '+ req.params.id, 
       item: req.params.id, 
       molfile: molfile,
