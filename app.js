@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var moleculeRouter = require('./routes/molecule');
 var catalogRouter = require('./routes/catalog');
 var itemRouter = require('./routes/item');
+var viewerRouter = require('./routes/viewer');
 var adminRouter = require('./routes/admin');
 var addMolecule = require('./routes/addMolecule');
 
@@ -48,8 +49,10 @@ app.use('/users', usersRouter);
 app.use('/molecule', moleculeRouter);
 app.use('/catalog', catalogRouter);
 app.use('/item', itemRouter);
-app.use('/admin', adminRouter);
+// app.use('/admin', adminRouter);
 app.use('/addMolecule', addMolecule);
+app.use('/viewer', viewerRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
