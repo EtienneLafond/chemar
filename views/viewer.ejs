@@ -121,7 +121,7 @@
                             <div class="row">
                                 <div class="col-12 mt-2">
                                   <div class="collapse multi-collapse" id="searchMenu">
-                                    <div class="input-group flex-nowrap mb-2">
+                                    <div class="input-group flex-nowrap">
                                         <span class="input-group-text" id="addon-wrapping">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
@@ -229,13 +229,13 @@
         const searchResults = document.getElementById('search-results');
         function displaySearchResults(data, error){
             if(data.hasOwnProperty('Fault')){
-                searchResults.innerHTML = `<p class="text-danger">No results found</p>`;
+                searchResults.innerHTML = `<p class="text-danger p-2">No results found</p>`;
             }
             else{
                 searchResults.innerHTML = '';
 
                 const searchResultTable = document.createElement('table');
-                searchResultTable.classList = 'table text-white display';
+                searchResultTable.classList = 'table text-white mb-0';
                 searchResults.appendChild(searchResultTable);
 
                 const tableHead = document.createElement('thead');
@@ -244,12 +244,11 @@
                 tableHead.appendChild(tableHeadRow);
                 const tableHeadCell1 = document.createElement('th');
                 const tableHeadCell2 = document.createElement('th');
-                const tableHeadCell3 = document.createElement('th');
-                tableHeadCell1.innerHTML = "IUPAC Name";
-                tableHeadCell2.innerHTML = "Formula";
+                tableHeadCell1.innerHTML = "Formula <br> IUPAC Name";
+                tableHeadCell2.innerHTML = "";
+
                 tableHeadRow.appendChild(tableHeadCell1);
                 tableHeadRow.appendChild(tableHeadCell2);
-                tableHeadRow.appendChild(tableHeadCell3);
 
 
                 const tableBody = document.createElement('tbody');
@@ -259,13 +258,11 @@
                     const row = tableBody.insertRow();
                     const cell1 = row.insertCell(0);
                     const cell2 = row.insertCell(1);
-                    const cell3 = row.insertCell(2);
 
 
                     cell1.classList.add('text-break');
-                    cell1.innerHTML = item.IUPACName;
-                    cell2.innerHTML = item.MolecularFormula;
-                    cell3.innerHTML = `<button class="btn btn-outline-light">View</button>`;
+                    cell1.innerHTML = item.MolecularFormula + "<br>" + item.IUPACName;
+                    cell2.innerHTML = `<button class="btn btn-outline-light">View</button>`;
 
                 }
             }
