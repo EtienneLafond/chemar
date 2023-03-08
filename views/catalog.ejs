@@ -23,8 +23,8 @@
         %>
         <% for (let item of listNumbers){%>
             <tr>
-                <td><a class="btn btn-light" href = "/item/<%=item%>"><%= String(item).padStart(3, '0') %></a></td>
-                <td><a class = "text-white" id="Name<%=item %>" href = "/item/<%=item%>">Name</a></td>
+                <td><a class="btn btn-light" href = "/viewer/<%=item%>"><%= String(item).padStart(3, '0') %></a></td>
+                <td><a class = "text-white" id="Name<%=item %>" href = "/viewer/<%=item%>">Name</a></td>
                 <td id="Formula<%=item %>">Formula</td>
             </tr>
         <%}%>

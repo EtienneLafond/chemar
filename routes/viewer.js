@@ -4,27 +4,25 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/catalog');
+  res.render('viewer', {
+    title: 'Molecule Viewer'
+  });
 });
 
 router.get('/:id', function(req , res){
   var molfiles = fs.readdirSync('./public/molfiles/')
-  let data = JSON.parse(fs.readFileSync('./public/catalog/catalog.json', "utf8"));
 
-  for(let i = 0; i < molfiles.length; i++){
-    molfiles[i] = molfiles[i].replace('.mol', '');
-  }
-  if(molfiles.includes(req.params.id)){
+  if(molfiles.includes(req.params.id + '.mol')){
     molfile = fs.readFileSync('./public/molfiles/'+req.params.id+'.mol', 'utf8');
     res.render('viewer', {
-      title: 'Molecule Viewer: '+ req.params.id, 
-      item: req.params.id, 
-      molfile: molfile,
-      name: data[req.params.id].name,
-      formula: data[req.params.id].formula,
+      title: 'Molecule Viewer', 
+      item: req.params.id
     });
   }else{
-    res.render('error', {title: 'Error', message: 'Molecule not found', error: {status: 404, stack: ''}});
+    res.render('viewer', {
+      title: 'Molecule Viewer', 
+      item: 2519
+    });  
   }
 });
 
