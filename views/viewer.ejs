@@ -304,7 +304,7 @@
                 materialRow.appendChild(materialCol);
                 
                 let materialCard = document.createElement('div');
-                materialCard.classList.add('card', 'bg-dark', 'text-white', 'mb-1');
+                materialCard.classList.add('card', 'bg-dark', 'text-white', 'border', 'border-white', 'mb-2');
                 materialCol.appendChild(materialCard);
                 
                 let materialCardBody = document.createElement('div');
@@ -503,6 +503,7 @@
             // scene.add( axesHelper );
 
             const gui = new dat.GUI();
+            gui.close();
 
             const loadMolecule = gui.addFolder('Load')
             loadMolecule.add(loadMoleculeFile, 'loadFile').name('Load .mol file from device');
