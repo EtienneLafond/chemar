@@ -8,22 +8,41 @@
     <div class="form-signin w-50 m-auto">
         <form action="/addMolecule" method="POST" id="addMolForm">
             <div class="form-floating">
-                <h4>Molecule name:</h4>
+                <h4 class="m-4">Molecule name:</h4>
                 <input class="form-control" type="text" id="moleculeName" name="name" required>
             </div>
             <div class="form-floating mb-4">
-                <h4>Formula:</h4>
+                <h4 class="m-4">Formula:</h4>
                 <input class="form-control" type="text" id="formula" name="formula" required>
             </div>
             <div class="form-floating">
-                <h4>File:</h4>
-                <input class="form-control" type="file" id="fileName" name="fileName" required>
+                <h4 class="m-4">File:</h4>
+                <input class="form-control" type="file" id="fileName" name="fileName" onchange="onReceiptsSelected()" required>
             </div>
             <br>
-            <button class="w-50 btn btn-lg btn-primary">Submit</button>
+            <button class="w-50 btn btn-lg btn-primary  mb-4">Submit</button>
+            <br>
+            <div class="form-floating">
+                <textarea class="" name="preview" id="preview" cols="100" rows="30"></textarea>
+            </div>
         </form>
     </div>
 
+    <script>
+        function onReceiptsSelected() {
+            const files = fileName.files;
+            if (files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById("preview").value += e.target.result;
+                    //console.log(e.target.result);
+                };
+                reader.readAsText(files[0]);
+            }
 
+            //const message = `File '${file.name}' is a ${file.type} with ${file.size}`;
+            //console.log(message);
+        }
+    </script>
 
 <%- include('partials/footer') %>
