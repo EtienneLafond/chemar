@@ -1,13 +1,11 @@
 <%- include('partials/header') %>
 <%-include('partials/navbar')%>
 
-<!--MAIN CONTENT-->
 <div class="container">
     <div class="row content">
-
-        <!--CENTER CONTENT-->
         <div class="col-12 pt-4 text-start text-white bg-dark">
-            <h1 class="display-5 fw-bold">Catalog</h1>
+            <h1 class="display-4 fw-bold">Catalog</h1>
+            <h2 class="display-5">.mol (molecule) files on server</h2>
             <p></p>
             <table id="molTable" class="table table-striped text-white" style="width:100%">
                 <thead>
@@ -26,17 +24,17 @@
                         %>
                         <% for (let item of listNumbers){%>
                             <tr>
+                                <td><%= String(item).padStart(3, '0' ) %></td>
                                 <td>
-                                    <%= String(item).padStart(3, '0' ) %>
-                                </td>
-        
-                                <td><a class="text-white" id="Name<%=item %>" href="/item/<%=item%>">Name</a>
+                                    <a class="text-white" id="Name<%=item %>" href="/item/<%=item%>">Name</a>
                                 </td>
                                 <td id="Formula<%=item %>" class="text-white">Formula</td>
                             </tr>
-                            <%}%>
+                        <%}%>
                 </tbody>
             </table>
+            <h2>.gltf (3D scene) files on server</h2>
+
         </div>
     </div>
 </div>
