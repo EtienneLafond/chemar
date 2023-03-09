@@ -29,6 +29,7 @@
     </div>
 
     <script>
+        // Preview the .mol file content when selected
         function onReceiptsSelected() {
             const files = fileName.files;
             if (files.length > 0) {
@@ -39,9 +40,6 @@
                 };
                 reader.readAsText(files[0]);
             }
-
-            //const message = `File '${file.name}' is a ${file.type} with ${file.size}`;
-            //console.log(message);
         }
     </script>
 
