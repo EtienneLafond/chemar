@@ -2,86 +2,40 @@
 <%-include('partials/navbar')%>
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
+<style>
 
-<div class = "container-fluid">
-<div class = "row">
-
-  <div class="pb-5 mb-4 bg-light rounded-3 bg-dark text-white">
+</style>
+<div class="container">
     <div class="row align-items-md-stretch">
-        <div class="col-12">
-          <iframe src = "https://localhost:4000/viewer/<%=item%>" width = "100%" height="400px" frameborder="0"></iframe>
+      <div class="col-12 col-sm-6 pt-4 text-start text-white">
+        <h1 class="display-5 fw-bold"><%=name%></h1>
+        <h2><%=formula%></h2> 
+        <p></p>
+      </div>
 
-          <div class="h-100 rounded-3 text-center">
-            <div class="px-5 py-2">
-              <h2><%=formula%></h2> 
-              <h1 class="fw-bold"><%=name%></h1>
-            </div>
-            <div class = "card bg-dark p-4 ">
-            <div class = "row">
-              <div class="col-md-12 mb-4">
-                <div class="h-100 rounded-3 text-center">
-                  <div class="d-grid gap-2">
-                    <a class="btn btn-outline-light" type="button">Augmented Reality Using WebXR</a>
-                    <a class="btn btn-outline-light" type="button">View in Augmented Reality Using Marker Tracking</a>
-                  </div>
-                </div>  
-              </div>
-              <div class="collapse" id="view3D">
-                <div class = "col-md-12 pb-4">
-                  <h2>View in 3D without Augmented Reality:</h2> 
-                  <p>View a representation of the molecule in 3D without using augmented reality. Does not require a camera or access to device sensors. Works on almost all devices.</p>
-                </div>
-              </div>
-
-              <div class = "col-md-12 pb-4">
-                <h2>View in Augmented Reality with WebXR:</h2> 
-                <p>View the molecule using WebXR based Augmented Reality. Works on most Android Smartphones. Requires the installation of the WebXR application for use on iOS based devices. Does not support desktop operating systems.</p>
-              </div>
-              <div class = "col-md-12 pb-4">
-                <h2>View in Augmented Reality with Marker Tracking:</h2> 
-                <p>View the molecule using marker based image recognition. Works on any device with a camera. Requires a tracking image (see example below) to be in view of the camera at all times.</p>
-              </div>
-
-              
-              <div class="col-md-6">
-                <div class="h-100 rounded-3 text-center">
-                    <a href = <%= "/molecule/" +item %>>
-                      <div id="qrcode" class="d-flex justify-content-center"></div>
-                    </a>
-                    <script type="text/javascript">
-                    new QRCode(document.getElementById("qrcode"), window.location.href.replace("item", "molecule").replace("http://", "https://"));
-                    </script>
-                    <a href = <%= "/molecule/" +item %>>
-                        Open link
-                    </a>
-                    <h2 class ="mt-2">QR Code</h2>
-                    <div class = "d-flex justify-content-center">
-                      <p class ="col-sm-8">Scan this QR code with your handset to view Molecule in AR, or click the link above to open the viewer on this device.</p>
-                    </div>  
-                  </div>
-              </div>
-
-              <div class="col-md-6">
-                  <div class="h-100 rounded-3 text-center">
-                    <img src="https://stemkoski.github.io/AR-Examples/markers/kanji.png" height="276" width="276" alt="">
-                    <br>
-                    <a href ="https://stemkoski.github.io/AR-Examples/markers/kanji.png">
-                      Open the tracking marker in a new window
-                    </a>
-                    <h2 class ="mt-2">Tracking Marker</h2>
-                    <div class = "d-flex justify-content-center">
-                      <p class ="col-sm-8">Point your handset at this tracking marker to see the molecule in 3D. Ensure the white border is fully visible.</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
+      <div class="col-12 col-sm-6">
+        <div class="moleculeViewer" style = "height: 75vh">
+          <iframe class = "rounded" src = "https://localhost:4000/viewer/<%=item%>" width = "100%" height="100%" frameborder="0"></iframe>
         </div>
+      </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  let pubchemURL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/<%=item%>/property/MolecularFormula,MolecularWeight,IUPACName,Title/JSON";
+  function getMoleculeURL(URL){
+    fetch(URL)
+        .then(response => response.text())
+        .then(molFile => {
+            console.log(molFile);
+            drawMolecule(molFile);
+        });
+    }
+
+    console.log(getMoleculeURL(pubchemURL));
+</script>
 
 <%- include('partials/footer') %>
 
