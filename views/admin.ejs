@@ -61,10 +61,18 @@ function getScenes(){
     </div>
     <!--New scenes placed here-->
   </div>
-  <div class="container mt-2 mt-md-0 col-12 col-md-3 bg-dark text-white">
-
-  </div>
 </div>
 
+<script>
+
+  $(document).ready(function () {
+      $('#molTable').DataTable({
+          scrollY: '500px',
+          scrollCollapse: true,
+          paging: true
+      });
+  });
+
+</script>
 <script>getScenes();</script>
 <%- include('partials/footer') %>
