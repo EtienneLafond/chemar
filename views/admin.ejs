@@ -2,14 +2,72 @@
 <%- include('partials/header') %>
 <%- include('partials/navbar')%>
 
-<div class="d-flex border pb-5 mb-4 bg-light rounded-3 bg-dark text-white justify-content-center">
-  <div class="d-flex border-bottom w-100 justify-content-center">
-    <h1 class="display-5 fw-bold">Admin Page</h1>
-    <div class="d-flex">
-      <button class=""></button> 
+<script>
+//Function to load scenes on start
+function getScenes(){
+  console.log("running");
+  //test scenes to be replaced with database format
+  let json = '{"list" : [' +
+    '{ "name": "Test Scene 1","description": "This is a test dummy scene for testing scene display feature"},' +
+    '{"name": "Test Scene 2","description": "This is a test dummy scene for testing scene display feature"} ]}';
+  let scenes = JSON.parse(json);
+  console.log(scenes);
+
+  let display = document.getElementById("sceneDisplay");
+  for(let i = 0; i < Object.keys(scenes.list).length; i++){
+    //Get next scene
+    let name = scenes.list[i].name;
+    console.log(name);
+    let description = scenes.list[i].description;
+    console.log(description);
+
+    //Create new space for scene
+    let div = document.createElement("div");
+    div.className = "row text-center";
+
+    let idDisplay = document.createElement("p");
+    idDisplay.className = "border btn-dark col-2 m-0";
+
+    let nameDisplay = document.createElement("p");
+    nameDisplay.className = "border btn-dark col m-0";
+
+    let descriptionDisplay = document.createElement("p");
+    descriptionDisplay.className = "border btn-dark col m-0";
+
+    //Add scene to display
+    idDisplay.innerText = i;
+    nameDisplay.innerText = name;
+    descriptionDisplay.innerText = description;
+
+    display.appendChild(div);
+    div.appendChild(idDisplay);
+    div.appendChild(nameDisplay);
+    div.appendChild(descriptionDisplay);
+  }
+} 
+</script>
+
+<!--Button to quickly move to profile section on mobile-->
+<div class="col-3 justify-content-start d-md-none">
+  <a href="#options" class="btn btn-outline-light">Profile</a>
+</div>
+<div class="container row justify-content-center mt-2">
+  <!--Scene display box-->
+  <div class="container col-12 col-md-7 border bg-light bg-dark text-white" id="sceneDisplay">
+    <div class="row border-bottom justify-content-center">
+      <h1 class="col fw-bold text-center">Scenes Manager</h1>
     </div>
-    
+    <div class="row">
+      <button class="btn border btn-dark col-2 rounded-0">ID</button>
+      <button class="btn border btn-dark col rounded-0">Name</button>
+      <button class="btn border btn-dark col rounded-0">Description</button>
+    </div>
+    <!--New scenes placed here-->
+  </div>
+  <div class="container col-12 col-md-3 border bg-light bg-dark text-white">
+
   </div>
 </div>
 
+<script>getScenes();</script>
 <%- include('partials/footer') %>
