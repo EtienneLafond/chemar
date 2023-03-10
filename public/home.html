@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="home.css" />
     <title>Three JS Molecules</title>
     <script src="js/molFileToJson.js"></script>
@@ -19,50 +29,92 @@
       body {
         margin: 0;
       }
+      #three-area {
+        height: 100vh;
+        width: 100%;
+      }
+      #gui-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 500px;
+        z-index: 1000 !important;
+      }
+
+      #body-container {
+        position: relative;
+      }
+      .bg-black {
+        background-color: #1f2326 !important;
+      }
+      .transparent-blur {
+        background-color: rgba(31, 35, 38, 0.7);
+      }
+      .blur-10 {
+        backdrop-filter: blur(10px);
+      }
     </style>
   </head>
-  <body>
-    <canvas class="webgl"></canvas>
-    <section class="section">
-      <h1 class = "">CHEMAR</h1>
-    </section>
-    <section class="section">
-      <div>
-      <h2>Description</h2>
-      <div>
-      <P>This paragraph explains the software</P>
-      </div> 
-    </section>
-    <section class="section">
-      <h2>Changelog</h2>
-    </section>
+  <body class="bg-dark">
+    <div id="body-container">
+      <div id="three-area"></div>
+      <div id="gui-area">
+        test text
+        <section class="section">
+          <div class="container">
+            <div class="row content">
+              <div class="col-12 pt-4 text-start text-white bg-dark">
+                <h1 class="display-4 fw-bold">Heading 1</h1>
+                <p class="fs-4">Text under heading</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="row content">
+              <div class="col-12 pt-4 text-start text-white bg-dark">
+                <h1 class="display-4 fw-bold">Heading 1</h1>
+                <p class="fs-4">Text under heading</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <h2>Changelog</h2>
+        </section>
+      </div>
+    </div>
+
     <script type="module">
       import { OrbitControls } from "./js/OrbitControls.js";
       import * as THREE from "./js/three.module.js";
       const objectsDistance = 4;
       const canvas = document.querySelector("canvas.webgl");
       const clock = new THREE.Clock();
+
+      const threeArea = document.getElementById("three-area");
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setClearColor(0x000000, 0);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      threeArea.appendChild(renderer.domElement);
+
       let deltaTime = 0;
       let totalTime = 0;
       let centerOffset = -10;
       let previousTime = 0;
-      const scene = new THREE.Scene();
       // Base camera
-      const camera = new THREE.PerspectiveCamera(
-        35,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        100
-      );
-      camera.position.z = 5;
-      const renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        alpha: true,
-      });
 
-      document.body.appendChild(renderer.domElement);
-      renderer.setClearAlpha(0);
-      renderer.setSize(window.innerWidth,window.innerHeight);
+      camera.position.z = 5;
       const geometry = new THREE.SphereGeometry(0.1, 32, 32);
       const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
       const sphereRadiusRatio = 0.75;
@@ -89,56 +141,38 @@
         F: new THREE.SphereGeometry(0.4 * sphereRadiusRatio, 32, 32),
         Cl: new THREE.SphereGeometry(0.5 * sphereRadiusRatio, 32, 32),
         Br: new THREE.SphereGeometry(0.6 * sphereRadiusRatio, 32, 32),
-        I: new THREE.SphereGeometry(0.7 *sphereRadiusRatio, 32, 32),
+        I: new THREE.SphereGeometry(0.7 * sphereRadiusRatio, 32, 32),
       };
       const moleculeMaterials = {
         C: new THREE.MeshPhongMaterial({
           color: 0x333333,
-  
-
         }),
         H: new THREE.MeshPhongMaterial({
           color: 0xffffff,
-
         }),
         O: new THREE.MeshPhongMaterial({
           color: 0xff0000,
-
-
         }),
         N: new THREE.MeshPhongMaterial({
           color: 0x0000ff,
-
-
         }),
         S: new THREE.MeshPhongMaterial({
           color: 0xffff00,
-
         }),
         P: new THREE.MeshPhongMaterial({
           color: 0xff00ff,
-
-
         }),
         F: new THREE.MeshPhongMaterial({
           color: 0x00ff00,
-
-
         }),
         Cl: new THREE.MeshPhongMaterial({
           color: 0x00ff00,
-
-
         }),
         Br: new THREE.MeshPhongMaterial({
           color: 0x00ff00,
-
-
         }),
         I: new THREE.MeshPhongMaterial({
           color: 0x00ff00,
-
-
         }),
       };
       const cylinderMaterial = new THREE.MeshBasicMaterial({
@@ -256,8 +290,6 @@
           moleculeGroup.add(cylinder);
         }
 
-
-
         scene.add(moleculeGroup);
       }
 
@@ -291,16 +323,16 @@
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
         deltaTime = clock.getDelta();
-      totalTime += deltaTime;
+        totalTime += deltaTime;
 
         moleculeGroup.rotation.x -= 0.5 * deltaTime;
       }
-     const sectionMeshes = [init(34668)];
+      const sectionMeshes = [init(34668)];
       /**
        * Particles
        */
       // Geometry
-      const particlesCount = window.innerHeight*window.innerWidth/1000;
+      const particlesCount = (window.innerHeight * window.innerWidth) / 1000;
       const positions = new Float32Array(particlesCount * 3);
       for (let i = 0; i < particlesCount; i++) {
         positions[i * 3 + 0] = (Math.random() - 0.5) * 10;
@@ -354,10 +386,11 @@
 
         console.log(cursor);
       });
+
       window.addEventListener("scroll", () => {
         // ...
         scrollY = window.scrollY;
-    const newSection = Math.round(scrollY / sizes.height);
+        const newSection = Math.round(scrollY / sizes.height);
         for (const moleculeGroup of sectionMeshes) {
           moleculeGroup.rotation.x += deltaTime * 0.1;
           moleculeGroup.rotation.y += deltaTime * 0.12;
