@@ -43,30 +43,30 @@ function getScenes(){
 }
 </script>
 
-<!--Button to quickly move to profile section on mobile-->
-<div class= "d-flex col-3 d-md-none">
-  <a href="#options" class="btn btn-outline-light">Profile</a>
-</div>
-<div class="container-fluid row m-0 mt-2 p-0">
-  <!--Scene display box-->
-  <div class="container col-12 col-md-7 border bg-light bg-dark text-white" id="sceneDisplay">
-    <div class="row border-bottom justify-content-center">
-      <h1 class="offset-1 col fw-bold text-center">Scenes Manager</h1>
-      <button class="btn btn-secondary col-1 p-0 align-self-center m-1">Add</button>
-    </div>
-    <div class="row">
-      <button class="btn border-end btn-dark col-2 rounded-0">ID</button>
-      <button class="btn border-end bottom btn-dark col-3 rounded-0">Name</button>
-      <button class="btn btn-dark col rounded-0">Description</button>
-    </div>
-    <!--New scenes placed here-->
+<div class="container">
+  <div class="row content">
+      <div class="col-12 pt-4 text-start text-white bg-dark">
+          <h1 class="display-4 fw-bold">Scene Manager</h1>
+          <table id="sceneTable" class="table table-striped text-white" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+
+      </div>
   </div>
 </div>
 
 <script>
 
   $(document).ready(function () {
-      $('#molTable').DataTable({
+      $('#sceneTable').DataTable({
           scrollY: '500px',
           scrollCollapse: true,
           paging: true
@@ -74,5 +74,17 @@ function getScenes(){
   });
 
 </script>
-<script>getScenes();</script>
+
+<style>
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #222;
+}
+.table-striped>tbody>tr:nth-of-type(odd)>td {
+  background-color: #222;
+  color: white ;
+}
+
+</style>
+
+
 <%- include('partials/footer') %>
