@@ -25,6 +25,13 @@
   color: #202020 ;
 }
 
+.transparent-dark{
+  background-color: rgba(31, 35, 38, 0.7);
+}
+.blur-10{
+  backdrop-filter: blur(10px);
+}
+
 
 .table-striped>tbody>tr:nth-of-type(odd)>td {
   background-color: #202020;
