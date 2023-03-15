@@ -1,0 +1,35 @@
+{   
+    "0" :{
+        "info":{
+                "name": "Test Scene", 
+                "description": "This is a test scene used to test the scene display"
+            },
+        "moles":[
+            {
+                "name": "2-Acetoxy-3-carboxy-N,N,N-trimethyl-1-propanaminium", 
+                "formula": "C9H18NO4"
+            },
+            {
+                "name": "2-Acetoxy-3-carboxy-N,N,N-trimethyl-1-propanaminium", 
+                "formula": "C9H18NO4"
+            }
+        ]
+    },
+
+    "1" :{
+        "info":{
+                "name": "Test Scene", 
+                "description": "This is a second test scene"
+            },
+        "moles":[
+            {
+                "name": "2-Acetoxy-3-carboxy-N,N,N-trimethyl-1-propanaminium", 
+                "formula": "C9H18NO4"
+            },
+            {
+                "name": "2-Acetoxy-3-carboxy-N,N,N-trimethyl-1-propanaminium", 
+                "formula": "C9H18NO4"
+            }
+        ]
+    }
+}
