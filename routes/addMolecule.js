@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
     var molFormula = req.body.formula;
     var fileName = req.body.fileName;
     var molFileContent = req.body.preview;
+    const csid = fileName.substring(0, fileName.indexOf("."));
 
     var molfiles = fs.readdirSync('./public/molfiles/');
     var fileIsPresent = molfiles.includes(fileName);
@@ -37,9 +38,27 @@ router.post('/', (req, res) => {
     }
     else {
         // Create new mol file in ./public/molefiles/
-        fs.writeFile('./public/molefiles/'+fileName, molFileContent, function (err) {
+        fs.writeFile('./public/molfiles/'+fileName, molFileContent, function (err) {
             if (err) throw err;
                 console.log('New molecule created');
+        });
+
+        // Read json file and add info to it
+        fs.readFile('./public/catalog/data.json', 'utf-8', function(err, data) {
+            if (err) throw err;
+            var arrayOfObjects = JSON .parse(data);
+            console.log(arrayOfObjects);
+            arrayOfObjects.users.push({
+                name: molName,
+                formula: molFormula
+            });
+            console.log(arrayOfObjects);
+
+            // Add to json file
+            fs.writeFile('./public/catalog/data.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+                if (err) throw err
+                console.log('Done!')
+            });
         });
     }    
 
