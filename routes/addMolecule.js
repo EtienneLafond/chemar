@@ -46,16 +46,44 @@ router.post('/', (req, res) => {
         // Read json file and add info to it
         fs.readFile('./public/catalog/data.json', 'utf-8', function(err, data) {
             if (err) throw err;
-            var arrayOfObjects = JSON .parse(data);
-            console.log(arrayOfObjects);
-            arrayOfObjects.users.push({
-                name: molName,
-                formula: molFormula
-            });
-            console.log(arrayOfObjects);
+            //console.log(data)
+            //var arrayOfObjects = JSON.parse(data);
+            //console.log(arrayOfObjects);
+            var myData = data;
+
+            // Prepared string to add to json file
+            var newMolString = ",\n\t\""+csid+"\":{\n"+
+                        "\t\t\"name\": \""+molName+"\",\n"+
+                        "\t\t\"formula\": \""+molFormula+
+                    "\"\n\t}\n";
+
+            var dataLength = data.length - 1;
+            myData = myData.substring(0, dataLength) + newMolString + myData.substring(dataLength)
+            //console.log(newMolString);
+
+            //myData += newMolString;
+            //myData.concat(", ", newMolString);
+
+            console.log(myData);
+
+            //arrayOfObjects.concat(", ", newMolString);
+
+            //console.log(arrayOfObjects);
+
+            //arrayOfObjects.users.push(
+        //    arrayOfObjects.(
+            //arrayOfObjects.push(
+        //        csid+":"+
+        //        {
+        //            name: molName,
+        //            formula: molFormula
+        //        }
+        //    );
+        //    console.log(arrayOfObjects);
 
             // Add to json file
-            fs.writeFile('./public/catalog/data.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+            fs.writeFile('./public/catalog/data.json', myData, 'utf-8', function(err) {
+        //    fs.writeFile('./public/catalog/data.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
                 if (err) throw err
                 console.log('Done!')
             });
