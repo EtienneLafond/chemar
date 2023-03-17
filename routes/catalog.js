@@ -6,7 +6,8 @@ var fs = require('fs');
 router.get('/', function(req, res, next) {
     const molfiles = './public/molfiles/';
     let molecule = JSON.parse(fs.readFileSync("./public/catalog/catalog.json"));
-    res.render('catalog', { title: 'Catalog', list: fs.readdirSync(molfiles), mol: molecule});
+    let name,formula = "not found in catalog";
+    res.render('catalog', { title: 'Catalog', list: fs.readdirSync(molfiles), mol: molecule,name: name, formula: formula});
 });
 
 module.exports = router;

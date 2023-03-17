@@ -1,5 +1,8 @@
 <%- include('partials/header') %>
 <%-include('partials/navbar')%>
+<script>
+    var fs = require('fs');
+</script>
 
 
 <div class="container">
@@ -18,19 +21,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% let listNumbers = list.map((item)=> {
+                    <%  let listNumbers = list.map((item)=> {
                             return item.replace(".mol", "")
                         })
                         listNumbers.sort(function(a, b) {
                             return a - b;})
                         %>
-                        <% for (let item of listNumbers){%>
+                        <% for (let item of listNumbers){
+                            if(mol[item] != undefined){
+                                let name = mol[item].name;
+                                let formula = mol[item].formula;
+                            } else {
+                                console.log("false");
+                                name = "not found in Catalog";
+                                formula = "not found in Catalog";
+                            }
+                            %>
                             <tr>
                                 <td><%= String(item).padStart(3, '0' ) %></td>
                                 <td>
-                                    <a class="text-white" id="Name<%=item %>" href="/item/<%=item%>">Name</a>
+                                    <a class="text-white" id="<%= "name" + item %>" href="/item/<%=item%>"><%=name%></a>
                                 </td>
-                                <td id="Formula<%=item %>" class="text-white">Formula</td>
+                                <td id="" class="text-white"><%=formula%></td>
                                 <td class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-light mx-1" data-bs-toggle="modal" data-bs-target="#canvasModal">
                                     Preview
