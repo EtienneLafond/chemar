@@ -18,11 +18,6 @@ router.post('/test', (req, res) => {
 
 // Post request when clicking submit button
 router.post('/', (req, res) => {
-    //console.log(req.body.name);
-    //console.log(req.body.formula);
-    //console.log(req.body.fileName);
-    //console.log(req.body.preview);
-
     // Assign values from form to variables
     var molName = req.body.name;
     var molFormula = req.body.formula;
