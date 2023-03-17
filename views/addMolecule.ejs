@@ -1,23 +1,24 @@
 <%- include('partials/header') %>
 <%-include('partials/navbar')%>
-<div class="container">
-    <div class="row content">
-        <div class="col-12 pt-4 text-start text-white bg-dark">
-            <h1 class="display-4 fw-bold">Add New Molecule</h1>
+<div class="pb-5 mb-4 bg-light rounded-3 bg-dark text-white text-center">
+    <div class=" pt-5">
+        <h1 class="display-5 fw-bold">Add new molecule Hello</h1>
+    </div>
     
-    <form class="d-flex justify-content-center flex-wrap" action="/addMolecule" method="POST" id="addMolForm">
+    
+    <form class="container d-flex justify-content-center flex-wrap" action="/addMolecule" method="POST" id="addMolForm" style="height: 75vh">
         <div class="row d-flex flex-wrap">
-          <div class="col-12 col-sm-6 d-flex  flex-wrap">
-                <h4>Molecule name:</h4>
-                <input type="text" class="form-control" id="moleculeName" name="name" placeholder="Molecule name"  required>
-                <h4>Formula:</h4>
-                <input type="text" class="form-control" id="formula" name="formula" placeholder="Formula" required>
-                <h4>File:</h4>
-                <input type="file" class="form-control" id="fileName" name="fileName" placeholder="File name" onchange="onReceiptsSelected()" required>
-                <button class="form-control my-4 w-50">Submit</button>
+          <div class="col d-flex align-content-center justify-content-center flex-wrap">
+                <h4 class="m-2">Molecule name:</h4>
+                <input type="text" class="form-control my-2" id="moleculeName" name="name" placeholder="Molecule name" style="height: 3em" required>
+                <h4 class="m-2">Formula:</h4>
+                <input type="text" class="form-control my-2" id="formula" name="formula" placeholder="Formula" style="height: 3em" required>
+                <h4 class="m-2">File:</h4>
+                <input type="file" class="form-control my-2" id="fileName" name="fileName" placeholder="File name" style="height: 3em" onchange="onReceiptsSelected()" required>
+                <button class="form-control my-4 w-50 btn btn-outline-light btn-lg">Submit</button>
           </div>
-          <div class="col-12 col-sm-6 d-flex align-content-stretch flex-wrap">
-                <textarea class="form-control" name="preview" id="preview"></textarea>
+          <div class="col d-flex align-content-stretch flex-wrap">
+                <textarea class="form-control my-5" name="preview" id="preview"></textarea>
           </div>
         </div>
     </form>        
@@ -30,7 +31,6 @@
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     document.getElementById("preview").value += e.target.result;
-                    //console.log(e.target.result);
                 };
                 reader.readAsText(files[0]);
             }
