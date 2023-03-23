@@ -6,6 +6,11 @@
   animation-fill-mode: forwards;
 }
 
+h1{
+  transition: font-size .3s;
+
+}
+
 @keyframes fadeInAnimation {
   0% {
       opacity: 0;
@@ -28,6 +33,7 @@
 .transparent-dark{
   background-color: rgba(31, 35, 38, 0.7);
 }
+
 .blur-10{
   backdrop-filter: blur(10px);
 }
