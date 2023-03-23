@@ -1,10 +1,7 @@
 <%- include('partials/header') %>
 <%-include('partials/navbar')%>
-<script>
-    var fs = require('fs');
-</script>
 
-
+<!--MAIN CONTENT-->
 <div class="container">
     <div class="row content">
         <div class="col-12 pt-4 text-start text-white bg-dark">
@@ -32,7 +29,6 @@
                                 let name = mol[item].name;
                                 let formula = mol[item].formula;
                             } else {
-                                console.log("false");
                                 name = "not found in Catalog";
                                 formula = "not found in Catalog";
                             }
@@ -40,40 +36,46 @@
                             <tr>
                                 <td><%= String(item).padStart(3, '0' ) %></td>
                                 <td>
-                                    <a class="text-white" id="<%= "name" + item %>" href="/item/<%=item%>"><%=name%></a>
+                                    <a class="text-white" id="<%= "name" + item %></a>" href="/item/<%=item%>"><%=name%></a>
                                 </td>
-                                <td id="" class="text-white"><%=formula%></td>
+                                <td id="<%= "formula" + item %></td>" class="text-white"><%=formula%></td>
                                 <td class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-light mx-1" data-bs-toggle="modal" data-bs-target="#canvasModal">
+                                    <button id="<%= "previewBtn" + item %>" type="button" class="btn btn-light mx-1" data-bs-toggle="modal" data-bs-target="#canvasModal">
                                     Preview
                                     </button>
                                     <button type="button" class="btn btn-info mx-1" data-bs-toggle="modal" data-bs-target="">
                                     Edit
                                     </button>
+                                    <button type="button" class="btn btn-light mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                          </svg> Share
+                                    </button>
                                     <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="">
                                         Delete
                                     </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="canvasModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content bg-dark">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-white" id="canvasModalLabel">Name</h5>
-                                                    <h6 class="modal-title text-white" id="canvasModalLabel">Formula</h6><br>
-                                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                            <div class="modal-body">
-                                                <iframe class="rounded" src="https://localhost:4000/viewer/<%=item%>" width="100%" height="100%" frameborder="0"></iframe>
-                                                <canvas id="myCanvas" width="400" height="400"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </td>
                             </tr>
                         <%}%>
                 </tbody>
             </table>
+            <!-- Modal -->
+            <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="canvasModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="canvasModalLabel">Name</h5>
+                            <h6 class="modal-title text-white" id="canvasModalLabel">Formula</h6><br>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    <div class="modal-body">
+                        <iframe id="iframePreview" class="rounded" src="" width="100%" height="100%" frameborder="0"></iframe>
+                        <canvas id="myCanvas" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
             <p class="fs-4">.gltf files</p>
 
         </div>
@@ -102,6 +104,26 @@
 }
 
 </style>
+
+<%=
+    fetch('file://./public/catalog/catalog.json')
+      .then((response) => response.json())
+      .then((data) => {
+        for(let item of Object.keys(data)){
+            if(list.includes(item)){
+
+            }
+            console.log(item);
+            document.getElementById("name" + item).innerHTML = data[item].name;
+            document.getElementById("formula" + item).innerHTML = data[item].formula;
+
+            const preview = document.getElementById("iframePreview");
+            preview.setAttribute("src", "https://localhost:4000/viewer/"+item);
+            console.log(item);
+        }
+      }
+      );
+    %>
 
 
 <%- include('partials/footer') %>
