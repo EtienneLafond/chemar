@@ -481,44 +481,8 @@
 
         console.log(cursor);
       });
-      
-      window.addEventListener("scroll", () => {
-        // ...
-        scrollY = window.scrollY;
-        const newSection = Math.round(scrollY / sizes.height);
-        for (const moleculeGroup of sectionMeshes) {
-          moleculeGroup.rotation.x += deltaTime * 0.1;
-          moleculeGroup.rotation.y += deltaTime * 0.12;
-        }
-        if (newSection != currentSection) {
-          // ...
-
-          gsap.to(sectionMeshes[currentSection].rotation, {
-            duration: 1.5,
-            ease: "power2.inOut",
-            x: "+=6",
-            y: "+=3",
-          });
-        }
-      });
-      const tick = () => {
-        // ...
-
-        // Animate camera
-        camera.position.y = (-scrollY / window.innerHeight) * objectsDistance;
-        const elapsedTime = clock.getElapsedTime();
-        const deltaTime = elapsedTime - previousTime;
-        previousTime = elapsedTime;
-        const parallaxX = cursor.x * 0.5;
-        const parallaxY = -cursor.y * 0.5;
-        cameraGroup.position.x +=
-          (parallaxX - cameraGroup.position.x) * 5 * deltaTime;
-        cameraGroup.position.y +=
-          (parallaxY - cameraGroup.position.y) * 5 * deltaTime;
-        // ...
-      };
+  
       animate();
-      tick();
     </script>
     
   <!--FOOTER SECTION-->
