@@ -25,6 +25,9 @@ var moleculeViewer = require('./routes/moleculeViewer');
 var sceneViewer = require('./routes/sceneViewer');
 var addMolecule = require('./routes/addMolecule');
 var addScene = require('./routes/addScene');
+var loginRouter = require('./routes/login');
+var sessionRouter = require('./routes/session');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
 
@@ -48,7 +51,7 @@ app.set("view engine", "ejs");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("iauuhdfsoivfdsoviufh"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
@@ -63,6 +66,9 @@ app.use('/sceneviewer', sceneViewer);
 
 app.use('/addMolecule', addMolecule);
 app.use('/addScene', addScene);
+app.use('/login', loginRouter);
+app.use('/session', sessionRouter);
+app.use('/logout', logoutRouter);
 
 
 // catch 404 and forward to error handler
