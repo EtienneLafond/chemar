@@ -64,9 +64,9 @@
                                 </td>
                                 <td><%= String(item).padStart(3, '0' ) %></td>
                                 <td>
-                                    <a class="text-white" id="Name<%=item %>" href="/item/<%=item%>">Name</a>
+                                    <a class="text-white" id="Table-Name-<%=item %>" href="/item/<%=item%>"><%data[item].name%></a>
                                 </td>
-                                <td id="Formula<%=item %>" class="text-white">Formula</td>
+                                <td id="Table-Formula-<%=item %>" class="text-white">Formula</td>
                             </tr>
                         <%}%>
                 </tbody>
@@ -74,6 +74,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    fetch("/catalog/molfileCatalog.json")
+        .then((response) => response.json())
+        .then((data) => 
+        console.log(data));
+    
+    
+
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="canvasModalLabel" aria-hidden="true">
