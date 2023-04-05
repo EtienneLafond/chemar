@@ -1,5 +1,10 @@
-{
-    "702.mol": {
-        "name": "Ethanol"
+    {
+        "702.mol": {
+            "name": "Ethanol"
+        },
+        "2424.mol": {
+            "name": "test",
+            "formula": "1234",
+            "description": "blablabla"
+        }
     }
-}
