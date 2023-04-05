@@ -1,10 +1,23 @@
     {
         "702.mol": {
-            "name": "Ethanol"
+            "name": "Ethanol",
+            "formula": "C2H6O",
+            "description": "blablabla"
         },
-        "2424.mol": {
-            "name": "test",
-            "formula": "1234",
+        
+        "2519.mol": {
+            "name": "Caffeine",
+            "formula": "C8H10N4O2",
+            "description": "blablabla"
+        },
+        "34668.mol": {
+            "name": "Diisooctyl sulphosuccinate",
+            "formula": "C20H38O7S",
+            "description": "blablabla"
+        },
+        "442430.mol": {
+            "name": "Nepetalactone trans-cis-form",
+            "formula": "C10H14O2",
             "description": "blablabla"
         }
     }

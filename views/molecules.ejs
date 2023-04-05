@@ -75,6 +75,26 @@
     </div>
 </div>
 
+
+<script>
+    fetch("/catalog/molfileCatalog.json")
+        .then((response) => response.json())
+        .then((data) => {
+            for (let item in data) {
+                //console.log(data[item].name)
+                var id= item.replace(".mol", "");
+                console.log(molName);
+                var molName = document.getElementById("Name"+id);
+                var molFormula = document.getElementById("Formula"+id);
+                molName.innerHTML = data[item].name;
+                molFormula.innerHTML = data[item].formula;
+            }
+        });
+
+        // Issue if item in molfileCatalog.json does not exist in the catalog (ID doesn't exist)
+
+</script>
+
 <!-- Modal -->
 <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="canvasModalLabel" aria-hidden="true">
     <div class="modal-dialog">
