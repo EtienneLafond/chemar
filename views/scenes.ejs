@@ -37,6 +37,11 @@
                         %>
                         <% for (let item of listNumbers){%>
                             <tr>
+                                <td><%= String(item).padStart(3, '0' ) %></td>
+                                <td>
+                                    <a class="text-white" id="Name<%=item %>" href="/sceneviewer/<%=item%>">Name</a>
+                                </td>
+                                <td id="Formula<%=item %>" class="text-white">Formula</td>
                                 <td class>
                                     <div class = "d-grid gap-2 d-md-flex justify-content-center">
                                         <button id="<%= "previewBtn" + item %>" type="button" class="preview btn btn-light" data-bs-toggle="modal" data-bs-target="#canvasModal">
@@ -68,11 +73,6 @@
                                     <%}%>
                                     </div>
                                 </td>
-                                <td><%= String(item).padStart(3, '0' ) %></td>
-                                <td>
-                                    <a class="text-white" id="Name<%=item %>" href="/sceneviewer/<%=item%>">Name</a>
-                                </td>
-                                <td id="Formula<%=item %>" class="text-white">Formula</td>
                             </tr>
                         <%}%>
                 </tbody>
@@ -80,6 +80,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    fetch("/catalog/sceneCatalog.json")
+        .then((response) => response.json())
+        .then((data) => {
+            // Iterates through the json file
+            for (let item in data) {
+                var id = item.replace(".wrl", "");
+                // Check if the molecule ID exists before trying to update the name and formula
+                if (document.getElementById("Name"+id) != null) {
+                    var molName = document.getElementById("Name"+id);
+                    var molFormula = document.getElementById("Formula"+id); 
+                    molName.innerHTML = data[item].name;
+                    molFormula.innerHTML = data[item].formula;
+                }
+            }
+        });
+
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="canvasModal" tabindex="-1" aria-labelledby="canvasModalLabel" aria-hidden="true">

@@ -86,18 +86,18 @@
     fetch("/catalog/molfileCatalog.json")
         .then((response) => response.json())
         .then((data) => {
+            // Iterates through the json file
             for (let item in data) {
-                //console.log(data[item].name)
-                var id= item.replace(".mol", "");
-                console.log(molName);
-                var molName = document.getElementById("Name"+id);
-                var molFormula = document.getElementById("Formula"+id);
-                molName.innerHTML = data[item].name;
-                molFormula.innerHTML = data[item].formula;
+                var id = item.replace(".mol", "");
+                // Check if the molecule ID exists before trying to update the name and formula
+                if (document.getElementById("Name"+id) != null) {
+                    var molName = document.getElementById("Name"+id);
+                    var molFormula = document.getElementById("Formula"+id); 
+                    molName.innerHTML = data[item].name;
+                    molFormula.innerHTML = data[item].formula;
+                }
             }
         });
-
-        // Issue if item in molfileCatalog.json does not exist in the catalog (ID doesn't exist)
 
 </script>
 
